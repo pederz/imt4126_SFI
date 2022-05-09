@@ -1,7 +1,7 @@
 # imt4126_SFI
 Synthetic Face Generation Project
 
-## Local Hardware Setup
+## Setup on local hardware
 Ensure that you have a NVIDIA® GPU card with CUDA® architectures 3.5, 5.0, 6.0, 7.0, 7.5, 8.0 and higher than 8.0. List over [CUDA®-enabled GPU cards](https://developer.nvidia.com/cuda-gpus)
 
 1. Install Ubuntu 20.04.4 LTS (Focal Fossa)
