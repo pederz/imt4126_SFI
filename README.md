@@ -30,8 +30,10 @@
 
 <!-- Setup on google colab -->
 ## Setup
+The only setup is the folder structure in Google Drive as described below. 
 
-Create the following folders in Google Drive and upload the biometric samples from the subset of the FRGC dataset that is going to be used in the project to the `raw_images` folder. The reason for using Google Drive is to save the files that is used in the project, so it is not lost when the session times out or crashes.
+### Folder Structure
+Create the following folders that are shown in the table below in Google Drive, and upload the biometric samples from the subset of the FRGC dataset that is going to be used in the project to the `raw_images` folder. The reason for using Google Drive is to save the files that is used in the project, so it is not lost when the session times out or crashes.
 
 ---
 | PATH | Description |
@@ -92,13 +94,21 @@ NB! When the session times out or crashes, remove or move the aligned facial bio
 Ensure that you have a NVIDIA® GPU card with CUDA® architectures 3.5, 5.0, 6.0, 7.0, 7.5, 8.0 and higher than 8.0. List over [CUDA®-enabled GPU cards](https://developer.nvidia.com/cuda-gpus)
 
 1. Install Ubuntu 20.04.4 LTS (Focal Fossa)
-2. Install CUDA 10.2
-3. Install cuDNN SDK X.XX
-4. Install TensorRT X.XX
+2. Install NVIDIA GPU Drivers
 
+### Docker (Recommended)
+The Docker files is used in the 
+3. Install Docker Engine (version 20.10.15, build fd82621 was used in the project)
+4. Install NVIDIA 
+### Non-Docker
+3. Install CUDA 10.0
+4. Install cuDNN SDK X.XX
+5. Install TensorRT X.XX
 
 Create the following folders on the local hardware and take the biometric samples from the subset of the FRGC dataset that is going to be used in the project to the `raw_images` folder:
 
+
+### Folder Structure
 ---
 | PATH | Description |
 ---|---
@@ -125,7 +135,11 @@ To align and crop the faces from the facial biometric samples to an resolution o
 | `~/Biometrics/samples/generated_images/` | For the generated biometric samples and the latent space vectors |
 | `~/Biometrics/stylegan2encoder` | Path for the rolux stylegan2encoder repo |
 
-1. Upload the `StyleGAN2encoder.ipynb` to Google Colab.
+### Docker
+
+### Non-Docker
+
+1. 
 2. 
 
 NB! When the script is killed because of out of memory or other errors, remove or move the aligned facial biometric samples that have already been used in generating the latent vectors and synthetic generated biometric samples. Since the script does not keep tabs on what files already have been generated. Then repeat step 3.
