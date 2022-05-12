@@ -33,5 +33,5 @@ elif [[ "$PWD" = */aligned_images ]]; then
                 fi
         done
 else
-	echo "You are not running the file in generated_iamges or aligned_images folder"
+	echo "You are not running the file in generated_images or aligned_images folder"
 fi
