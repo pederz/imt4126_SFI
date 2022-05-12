@@ -99,6 +99,7 @@ Ensure that you have a NVIDIA® GPU card with CUDA® architectures 3.5, 5.0, 6.0
 4. Install Docker Engine (version 20.10.15, build fd82621)
 5. Install NVIDIA Container Toolkit (1.9.0-1)
 6. Install Anaconda (4.12.0)
+* Recommendation: Install GNU Screen or tmux, and use it when running the scripts or docker container.
 
 Create the following folders on the local hardware and take the biometric samples from the subset of the FRGC dataset that is going to be used in the project to the `raw_images` folder:
 
@@ -118,26 +119,23 @@ Create the following folders on the local hardware and take the biometric sample
 To align and crop the faces from the facial biometric samples to an resolution of 1024 × 1024 pixels, the run the `align_images.py` from the github repository [StyleGAN2 — Encoder/Projector for Official TensorFlow Implementation](https://github.com/rolux/stylegan2encoder/) from Rolux.
 
 1. `cd ~/Biometrics/stylegan2encoder`
-2. Create conda environment based on `align_image_packages.yml`.
-  * Command 
+2. Download [align_image_packages.yml](align_image_packages.yml) to the current folder
+3. Create and activate a conda environment based on `align_image_packages.yml`.
+  * `conda env create -f align_image_packages.yml`
+  * `conda activate stylegan2encoder`
 4. Run the script with the following parameters:  
 `python align_images.py ../samples/raw_images/ ../samples/aligned_images/`
 
 ## Latent space projection and generation of synthetic biometric samples
----
-| PATH | Description |
----|---
-| `~/Biometrics/samples/aligned_images/` | For the aligned facial biometric samples |
-| `~/Biometrics/samples/generated_images/` | For the generated biometric samples and the latent space vectors |
-| `~/Biometrics/stylegan2encoder` | Path for the rolux stylegan2encoder repo |
 
-Build the docker image with:
+1. `cd ~/Biometrics/`
+2. Download the [Dockerfile](Dockerfile) to the current folder
+3. Build the docker image with:  
 `docker build . --no-cache -t stylegan2`
-
-Run the docker with the following script to select GPU #0:
+4. Run the docker with the following script to use GPU #0:
 `docker run --gpus '"device=0"' --mount type=bind,source="$(pwd)"/samples,target=/home/pederz/biometrics/samples stylegan2 ./samples/aligned_images/ ./samples/generated_images/`
 
-If multiple GPU, multiple containers can be runned with selecting a GPU for each container. Just remember to create subfolders in the aligned_images folder, so the images are not used as source multiple time:
+If local hardware has multiple GPUs, multiple containers can be runned with selecting a GPU for each container (This is because `project_images.py` only runs on one GPU). Just remember to create subfolders in the aligned_images folder, so the same images are not used as source multiple time:
 
 `docker run --gpus '"device=1"' --mount type=bind,source="$(pwd)"/samples,target=/home/pederz/biometrics/samples stylegan2 ./samples/aligned_images/subfolder1 ./samples/generated_images/`
 
