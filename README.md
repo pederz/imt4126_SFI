@@ -18,6 +18,7 @@
   * [Latent space projection and generation of synthetic biometric samples](#latent-space-projection-and-generation-of-synthetic-biometric-samples)
   * [Biometric features extraction](#biometric-features-extraction)
     * [Clean before feature extraction](#clean-before-feature-extraction)
+    * [Extraction](#extraction)
   * [Similarity comparision](#similarity-comparision)
 
 - [:computer: Local Hardware](#computer-local-hardware)
@@ -26,6 +27,7 @@
   * [Latent space projection and generation of synthetic biometric samples](#latent-space-projection-and-generation-of-synthetic-biometric-samples-1)
   * [Biometric features extraction](#biometric-features-extraction-1)
     * [Clean before feature extraction](#clean-before-feature-extraction-1)
+    * [Extraction](#extraction-1)
   * [Similarity comparision](#similarity-comparision-1)
 
 # :cloud: Google Colab
@@ -184,5 +186,7 @@ Before conducting the biometric feature extraction process, a clean up on the `a
     * `aligned_images` will only contain folders with the name of the subject id of the biometric samples, Eg. `02463d`, with each biometric sample of the subject id inside the folder.
     * `generated_images` will contain the same folders as `aligned_images`, with the subfolders only containing the synthetic generated biometric samples.
     * New folder is created, named `generated_npy`, where all of the latent vectors are stored.
+
+### Extraction
 
 ## Similarity comparision
