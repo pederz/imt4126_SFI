@@ -95,15 +95,12 @@ Ensure that you have a NVIDIA® GPU card with CUDA® architectures 3.5, 5.0, 6.0
 
 1. Install Ubuntu 20.04.4 LTS (Focal Fossa)
 2. Install NVIDIA GPU Drivers
+3. Install CUDA Toolkit 11.2
+4. Install Docker Engine (version 20.10.15, build fd82621 was used in the project)
+5. Install 
 
-### Docker (Recommended)
-The Docker files is used in the 
-3. Install Docker Engine (version 20.10.15, build fd82621 was used in the project)
+
 4. Install NVIDIA 
-### Non-Docker
-3. Install CUDA 10.0
-4. Install cuDNN SDK X.XX
-5. Install TensorRT X.XX
 
 Create the following folders on the local hardware and take the biometric samples from the subset of the FRGC dataset that is going to be used in the project to the `raw_images` folder:
 
@@ -137,10 +134,19 @@ To align and crop the faces from the facial biometric samples to an resolution o
 
 ### Docker
 
-### Non-Docker
+Build the docker image with:
+`docker build . --no-cache -t stylegan2`
 
-1. 
-2. 
+Run the docker with the following script to select GPU #0:
+`docker run --gpus '"device=0"' --mount type=bind,source="$(pwd)"/samples,target=/home/pederz/biometrics/samples stylegan2 ./samples/aligned_images/ ./samples/generated_images/`
+
+If multiple GPU, multiple containers can be runned with selecting a GPU for each container. Just remember to create subfolders in the aligned_images folder, so the multiple containers dont use the same images as source:
+
+`docker run --gpus '"device=1"' --mount type=bind,source="$(pwd)"/samples,target=/home/pederz/biometrics/samples stylegan2 ./samples/aligned_images/subfolder1 ./samples/generated_images/`
+
+`docker run --gpus '"device=1"' --mount type=bind,source="$(pwd)"/samples,target=/home/pederz/biometrics/samples stylegan2 ./samples/aligned_images/subfolder2 ./samples/generated_images/`
+
+
 
 NB! When the script is killed because of out of memory or other errors, remove or move the aligned facial biometric samples that have already been used in generating the latent vectors and synthetic generated biometric samples. Since the script does not keep tabs on what files already have been generated. Then repeat step 3.
 
