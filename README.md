@@ -17,6 +17,7 @@
   * [Biometric samples alignment](#biometric-samples-alignment)
   * [Latent space projection and generation of synthetic biometric samples](#latent-space-projection-and-generation-of-synthetic-biometric-samples)
   * [Biometric features extraction](#biometric-features-extraction)
+    * [Clean before feature extraction](#clean-before-feature-extraction)
   * [Similarity comparision](#similarity-comparision)
 
 - [:computer: Local Hardware](#computer-local-hardware)
@@ -24,6 +25,7 @@
   * [Biometric samples alignment](#biometric-samples-alignment-1)
   * [Latent space projection and generation of synthetic biometric samples](#latent-space-projection-and-generation-of-synthetic-biometric-samples-1)
   * [Biometric features extraction](#biometric-features-extraction-1)
+    * [Clean before feature extraction](#clean-before-feature-extraction-1)
   * [Similarity comparision](#similarity-comparision-1)
 
 # :cloud: Google Colab
@@ -84,6 +86,15 @@ NB! When the session times out or crashes, remove or move the aligned facial bio
 
 
 ## Biometric features extraction
+
+### Clean-before-feature-extraction
+1. Start with cleaning up the folders `aligned_images` and `generated_images`. Use [move_files.ipynb](move_files.ipynb).
+2. Upload [move_files.ipynb](move_files.ipynb) to Google Colab
+3. Run the cells inside [move_files.ipynb](move_files.ipynb)
+* Result:
+    * `aligned_images` will only contain folders with the name of the subject id of the biometric samples, Eg. `02463d`, with each biometric sample of the subject id inside the folder.
+    * `generated_images` will contain the same folders as `aligned_images`, with the subfolders only containing the synthetic generated biometric samples.
+    * New folder is created, named `generated_npy`, where all of the latent vectors are stored.
 
 ## Similarity comparision
 
@@ -157,5 +168,21 @@ NB! When the script is killed because of out of memory or other errors, remove o
 
 
 ## Biometric features extraction
+
+### Clean before feature extraction
+Before conducting the biometric feature extraction process, a clean up on the `aligned_images` and `generated_images` are needed.
+1. Download [move.sh](move.sh) to `~/Biometrics/aligned_images` and `~/Biometrics/generated_images`. 
+2. `cd ~/Biometrics/aligned_images`
+3. `chmod +x move.sh`
+4. `./move.sh`
+5. `cd ~/Biometrics/generated_images`
+6. `chmod +x move.sh`
+7. `./move.sh`
+8. `rm ~/Biometrics/aligned_images/move.sh`
+9. `rm ~/Biometrics/generated_images/move.sh`
+* Result:
+    * `aligned_images` will only contain folders with the name of the subject id of the biometric samples, Eg. `02463d`, with each biometric sample of the subject id inside the folder.
+    * `generated_images` will contain the same folders as `aligned_images`, with the subfolders only containing the synthetic generated biometric samples.
+    * New folder is created, named `generated_npy`, where all of the latent vectors are stored.
 
 ## Similarity comparision
