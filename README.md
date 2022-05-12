@@ -129,7 +129,7 @@ To align and crop the faces from the facial biometric samples to an resolution o
 ## Latent space projection and generation of synthetic biometric samples
 
 1. `cd ~/Biometrics/`
-2. Download the [Dockerfile](Dockerfile) to the current folder
+2. Download the [Dockerfile](Dockerfile) and [.dockerignore](.dockerignore) to the current folder
 3. Build the docker image with:  
 `docker build . --no-cache -t stylegan2`
 4. Run the docker with the following script to use GPU #0:
