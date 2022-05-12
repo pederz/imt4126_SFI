@@ -104,7 +104,7 @@ NB! When the session times out or crashes, remove or move the aligned facial bio
 ## Setup
 Ensure that you have a NVIDIA® GPU card with CUDA® architectures 3.5, 5.0, 6.0, 7.0, 7.5, 8.0 and higher than 8.0. List over [CUDA®-enabled GPU cards](https://developer.nvidia.com/cuda-gpus). Version number that was used in the project is in parentheses.
 
-1. Install Ubuntu 20.04.4 LTS (Focal Fossa)
+1. Install Ubuntu (20.04.4 LTS Focal Fossa)
 2. Install NVIDIA GPU Drivers (510.60.02)
 3. Install CUDA Toolkit (11.2)
 4. Install Docker Engine (version 20.10.15, build fd82621)
