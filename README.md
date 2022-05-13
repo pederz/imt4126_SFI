@@ -31,7 +31,7 @@
   * [Similarity comparision](#similarity-comparision-1)
 
 # :cloud: Google Colab
-All files that are used for Google Colab in the project, are in the [Google Colab](Google%20Colab) folder.
+All files that are used for Google Colab in the project, are in the [Google Colab](GoogleColab) folder.
 <!-- Setup on google colab -->
 ## Setup
 The only setup is the folder structure in Google Drive as described below. 
@@ -103,6 +103,9 @@ NB! When the session times out or crashes, remove or move the aligned facial bio
 
 # :computer: Local Hardware
 <!-- Setup on local hardware -->
+
+All files that are used for local hardware in the project, are in the [Local Hardware](LocalHardware) folder.
+
 ## Setup
 Ensure that you have a NVIDIA® GPU card with CUDA® architectures 3.5, 5.0, 6.0, 7.0, 7.5, 8.0 and higher than 8.0. List over [CUDA®-enabled GPU cards](https://developer.nvidia.com/cuda-gpus). Version number that was used in the project is in parentheses.
 
@@ -132,7 +135,7 @@ Create the following folders on the local hardware and take the biometric sample
 To align and crop the faces from the facial biometric samples to an resolution of 1024 × 1024 pixels, the run the `align_images.py` from the github repository [StyleGAN2 — Encoder/Projector for Official TensorFlow Implementation](https://github.com/rolux/stylegan2encoder/) from Rolux.
 
 1. `cd ~/Biometrics/stylegan2encoder`
-2. Download [align_image_packages.yml](LocalMachine/align_image_packages.yml) to the current folder
+2. Download [align_image_packages.yml](LocalHardware/align_image_packages.yml) to the current folder
 3. Create and activate a conda environment based on `align_image_packages.yml`.
   * `conda env create -f align_image_packages.yml`
   * `conda activate stylegan2encoder`
@@ -142,7 +145,7 @@ To align and crop the faces from the facial biometric samples to an resolution o
 ## Latent space projection and generation of synthetic biometric samples
 
 1. `cd ~/Biometrics/`
-2. Download the [Dockerfile](LocalMachine/Dockerfile) and [.dockerignore](LocalMachine/.dockerignore) to the current folder
+2. Download the [Dockerfile](LocalHardware/Dockerfile) and [.dockerignore](LocalHardware/.dockerignore) to the current folder
 3. Build the docker image with:  
 `docker build . --no-cache -t stylegan2`
 4. Run the docker with the following script to use GPU #0:
@@ -173,7 +176,7 @@ NB! When the script is killed because of out of memory or other errors, remove o
 
 ### Clean before feature extraction
 Before conducting the biometric feature extraction process, a clean up on the `aligned_images` and `generated_images` are needed.
-1. Download [move.sh](LocalMachine/move.sh) to `~/Biometrics/aligned_images` and `~/Biometrics/generated_images`. 
+1. Download [move.sh](LocalHardware/move.sh) to `~/Biometrics/aligned_images` and `~/Biometrics/generated_images`. 
 2. `cd ~/Biometrics/aligned_images`
 3. `chmod +x move.sh`
 4. `./move.sh`
@@ -188,7 +191,7 @@ Before conducting the biometric feature extraction process, a clean up on the `a
     * New folder is created, named `generated_npy`, where all of the latent vectors are stored.
 
 ### Extraction
-1. Download [align_image_packages.yml](LocalMachine/align_image_packages.yml) to the current folder
+1. Download [align_image_packages.yml](LocalHardware/align_image_packages.yml) to the current folder
 
 
 ## Similarity comparision
