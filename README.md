@@ -31,7 +31,7 @@
   * [Similarity comparision](#similarity-comparision-1)
 
 # :cloud: Google Colab
-
+All files that are used for Google Colab in the project, are in the [Google Colab](Google%20Colab) folder.
 <!-- Setup on google colab -->
 ## Setup
 The only setup is the folder structure in Google Drive as described below. 
@@ -53,7 +53,7 @@ Create the following folders that are shown in the table below in Google Drive, 
 <!-- biometric sample alignment google colab -->
 ## Biometric Samples Alignment
 
-1. Upload the [Align_Images.ipynb](Align_Images.ipynb) to Google Colab.
+1. Upload the [Align_Images.ipynb](GoogleColab/Align_Images.ipynb) to Google Colab.
 2. Open it in Google Colab
 3. Go to 'Edit-> Notebook settings', and in the settings choose the following:
   * Select `GPU` in Hardware accelerator
@@ -65,7 +65,7 @@ Create the following folders that are shown in the table below in Google Drive, 
 
 Ensure that the current paths from the setup section exist in google drive or rewrite the paths in the script:
 
-1. Upload the [StyleGAN2encoder.ipynb](StyleGAN2encoder.ipynb) to Google Colab.
+1. Upload the [StyleGAN2encoder.ipynb](GoogleColab/StyleGAN2encoder.ipynb) to Google Colab.
 2. Open it in Google Colab
 3. Go to 'Edit-> Notebook settings', and in the settings choose the following:
   * Select `GPU` in Hardware accelerator
@@ -90,9 +90,9 @@ NB! When the session times out or crashes, remove or move the aligned facial bio
 ## Biometric features extraction
 
 ### Clean-before-feature-extraction
-1. Start with cleaning up the folders `aligned_images` and `generated_images`. Use [move_files.ipynb](move_files.ipynb).
-2. Upload [move_files.ipynb](move_files.ipynb) to Google Colab
-3. Run the cells inside [move_files.ipynb](move_files.ipynb)
+1. Start with cleaning up the folders `aligned_images` and `generated_images`. Use [move_files.ipynb](GoogleColab/move_files.ipynb).
+2. Upload [move_files.ipynb](GoogleColab/move_files.ipynb) to Google Colab
+3. Run the cells in `move_files.ipynb`
 * Result:
     * `aligned_images` will only contain folders with the name of the subject id of the biometric samples, Eg. `02463d`, with each biometric sample of the subject id inside the folder.
     * `generated_images` will contain the same folders as `aligned_images`, with the subfolders only containing the synthetic generated biometric samples.
@@ -132,7 +132,7 @@ Create the following folders on the local hardware and take the biometric sample
 To align and crop the faces from the facial biometric samples to an resolution of 1024 × 1024 pixels, the run the `align_images.py` from the github repository [StyleGAN2 — Encoder/Projector for Official TensorFlow Implementation](https://github.com/rolux/stylegan2encoder/) from Rolux.
 
 1. `cd ~/Biometrics/stylegan2encoder`
-2. Download [align_image_packages.yml](align_image_packages.yml) to the current folder
+2. Download [align_image_packages.yml](LocalMachine/align_image_packages.yml) to the current folder
 3. Create and activate a conda environment based on `align_image_packages.yml`.
   * `conda env create -f align_image_packages.yml`
   * `conda activate stylegan2encoder`
@@ -142,7 +142,7 @@ To align and crop the faces from the facial biometric samples to an resolution o
 ## Latent space projection and generation of synthetic biometric samples
 
 1. `cd ~/Biometrics/`
-2. Download the [Dockerfile](Dockerfile) and [.dockerignore](.dockerignore) to the current folder
+2. Download the [Dockerfile](LocalMachine/Dockerfile) and [.dockerignore](LocalMachine/.dockerignore) to the current folder
 3. Build the docker image with:  
 `docker build . --no-cache -t stylegan2`
 4. Run the docker with the following script to use GPU #0:
@@ -173,7 +173,7 @@ NB! When the script is killed because of out of memory or other errors, remove o
 
 ### Clean before feature extraction
 Before conducting the biometric feature extraction process, a clean up on the `aligned_images` and `generated_images` are needed.
-1. Download [move.sh](move.sh) to `~/Biometrics/aligned_images` and `~/Biometrics/generated_images`. 
+1. Download [move.sh](LocalMachine/move.sh) to `~/Biometrics/aligned_images` and `~/Biometrics/generated_images`. 
 2. `cd ~/Biometrics/aligned_images`
 3. `chmod +x move.sh`
 4. `./move.sh`
@@ -188,5 +188,7 @@ Before conducting the biometric feature extraction process, a clean up on the `a
     * New folder is created, named `generated_npy`, where all of the latent vectors are stored.
 
 ### Extraction
+1. Download [align_image_packages.yml](LocalMachine/align_image_packages.yml) to the current folder
+
 
 ## Similarity comparision
