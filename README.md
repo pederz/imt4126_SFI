@@ -123,18 +123,18 @@ Create the following folders on the local hardware and take the biometric sample
 ---
 | PATH | Description |
 ---|---
-| `~/Biometrics/samples/raw_images/` | For the original biometric samples from the subset of the FRGC dataset |
-| `~/Biometrics/samples/aligned_images/` | For the aligned biometric samples (using `align_images.py`) |
-| `~/Biometrics/samples/generated_images/` | For the generated biometric samples and the latent space vectors |
-| `~/Biometrics/samples/embeddings/aligned` | For the biometric features extracted from the aligned biometric samples |
-| `~/Biometrics/samples/embeddings/generated` | For the biometric features extracted from the generated biometric samples |
-| `~/Biometrics/samples/generated_npy/` | For the latent space vectors - Moved from `generated_images` |
-| `~/Biometrics/stylegan2encoder` | Path for the rolux stylegan2encoder repository |
+| `~/biometrics/samples/raw_images/` | For the original biometric samples from the subset of the FRGC dataset |
+| `~/biometrics/samples/aligned_images/` | For the aligned biometric samples (using `align_images.py`) |
+| `~/biometrics/samples/generated_images/` | For the generated biometric samples and the latent space vectors |
+| `~/biometrics/samples/embeddings/aligned` | For the biometric features extracted from the aligned biometric samples |
+| `~/biometrics/samples/embeddings/generated` | For the biometric features extracted from the generated biometric samples |
+| `~/biometrics/samples/generated_npy/` | For the latent space vectors - Moved from `generated_images` |
+| `~/biometrics/stylegan2encoder` | Path for the rolux stylegan2encoder repository |
 
 ## Biometric Samples Alignment
 To align and crop the faces from the facial biometric samples to an resolution of 1024 × 1024 pixels, the run the `align_images.py` from the github repository [StyleGAN2 — Encoder/Projector for Official TensorFlow Implementation](https://github.com/rolux/stylegan2encoder/) from Rolux.
 
-1. `cd ~/Biometrics/stylegan2encoder`
+1. `cd ~/biometrics/stylegan2encoder`
 2. Download [align_image_packages.yml](LocalHardware/align_image_packages.yml) to the current folder
 3. Create and activate a conda environment based on `align_image_packages.yml`.
   * `conda env create -f align_image_packages.yml`
@@ -144,7 +144,7 @@ To align and crop the faces from the facial biometric samples to an resolution o
 
 ## Latent space projection and generation of synthetic biometric samples
 
-1. `cd ~/Biometrics/`
+1. `cd ~/biometrics/`
 2. Download the [Dockerfile](LocalHardware/Dockerfile) and [.dockerignore](LocalHardware/.dockerignore) to the current folder
 3. Build the docker image with:  
 `docker build . --no-cache -t stylegan2`
@@ -160,7 +160,7 @@ If local hardware has multiple GPUs, multiple containers can be runned with sele
 NB! When the script is killed because of out of memory or other errors, remove or move the aligned facial biometric samples that have already been used in generating the latent vectors and synthetic generated biometric samples. Since the script does not keep tabs on what files already have been generated. Then repeat step 3.
 
 ***Please Note:*** If downloading the pre-trained networks fails because of too many downloads or other errors, then do the following:
-1. Create the folder `.stylegan2-cache` inside the `Biometrics/stylegan2encoder` folder if it does not exist. 
+1. Create the folder `.stylegan2-cache` inside the `~/biometrics/stylegan2encoder` folder if it does not exist. 
 2. Then manually download the two files:
 * [stylegan2-ffhq-config-f.pkl](http://d36zk2xti64re0.cloudfront.net/stylegan2/networks/stylegan2-ffhq-config-f.pkl)
 * [vgg16_zhang_perceptual.pkl](https://drive.google.com/uc?id=1N2-m9qszOeVC9Tq77WxsLnuWwOedQiD2)
@@ -177,14 +177,14 @@ NB! When the script is killed because of out of memory or other errors, remove o
 ### Clean before feature extraction
 Before conducting the biometric feature extraction process, a clean up on the `aligned_images` and `generated_images` are needed.
 1. Download [move.sh](LocalHardware/move.sh) to `~/Biometrics/aligned_images` and `~/Biometrics/generated_images`. 
-2. `cd ~/Biometrics/aligned_images`
+2. `cd ~/biometrics/aligned_images`
 3. `chmod +x move.sh`
 4. `./move.sh`
-5. `cd ~/Biometrics/generated_images`
+5. `cd ~/biometrics/generated_images`
 6. `chmod +x move.sh`
 7. `./move.sh`
-8. `rm ~/Biometrics/aligned_images/move.sh`
-9. `rm ~/Biometrics/generated_images/move.sh`
+8. `rm ~/biometrics/aligned_images/move.sh`
+9. `rm ~/biometrics/generated_images/move.sh`
 * Result:
     * `aligned_images` will only contain folders with the name of the subject id of the biometric samples, Eg. `02463d`, with each biometric sample of the subject id inside the folder.
     * `generated_images` will contain the same folders as `aligned_images`, with the subfolders only containing the synthetic generated biometric samples.
