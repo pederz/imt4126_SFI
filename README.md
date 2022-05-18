@@ -9,6 +9,8 @@
 
 <br />
 
+The list over the images that has been used from the FRGC dataset are in the file [images_list.txt](images_list.txt)
+
 <!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
 
