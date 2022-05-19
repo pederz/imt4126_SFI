@@ -9,7 +9,8 @@
 
 <br />
 
-The list over the images that has been used from the FRGC dataset are in the file [images_list.txt](images_list.txt)
+The list over the images that has been used from the FRGC dataset are in the file [images_list.txt](images_list.txt).
+Both online and local hardware was used in the experiments in this paper. The local hardware that was used was an Ubuntu 20.04 machine, with an Intel 12900K (16 cores and 24 threads), 2 x NVIDIA GeForce 1080 Ti (11 GB GDDR5X), 32 GB DDR5 RAM and a PCIe x4.0 M.2 SSD. The online hardware was Google Colab. Google Colab was runned with a paid subscription (Google Colab Pro+), with GPU as hardware accelerator (NVIDIA Tesla P100 with 16 GB HBM2) and normal runtime shape.
 
 <!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
